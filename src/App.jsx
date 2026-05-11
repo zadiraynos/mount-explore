@@ -14,7 +14,6 @@ function App() {
       }}
     >
       <div className="background"></div>
-
       <div className="dark-layer"></div>
 
       {!zoomed && (
@@ -31,13 +30,8 @@ function App() {
 
       {zoomed && (
         <section className="scene">
-          <p className="scene-label">
-            Click anywhere to return
-          </p>
-
-          <h2>
-            Into the mountains
-          </h2>
+          <p className="scene-label">Click anywhere to return</p>
+          <h2>Into the mountains</h2>
         </section>
       )}
     </main>
