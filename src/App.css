@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  background-image: url('./assets/mountains.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transform: scale(1);
+
+  transition:
+    transform 4s ease,
+    background-position 4s ease,
+    filter 4s ease;
+}
+
+.dark-layer {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.04), transparent 35%),
+    rgba(0, 0, 0, 0.18);
+
+  transition: background 4s ease;
+}
+
+.hero.is-zoomed .background {
+  transform: scale(1.42);
+  background-position: center 35%;
+  filter: brightness(0.72) contrast(1.08);
+}
+
+.hero.is-zoomed .dark-layer {
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.02), transparent 35%),
+    rgba(0, 0, 0, 0.42);
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+
+  font-size: clamp(48px, 10vw, 110px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  cursor: pointer;
+
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.25),
+    0 0 32px rgba(173, 216, 230, 0.18);
+
+  transition:
+    transform 0.6s ease,
+    text-shadow 0.6s ease;
+}
+
+.title::after {
+  content: 'Mount Explore';
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.95),
+    rgba(180, 220, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  background-size: 220% 100%;
+  background-position: -100% 0;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease,
+    background-position 1.2s ease;
+}
+
+.title:hover {
+  transform: scale(1.02);
+
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.35),
+    0 0 45px rgba(173, 216, 230, 0.28);
+}
+
+.title:hover::after {
+  opacity: 1;
+  background-position: 100% 0;
+}
+
+.scene {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  color: white;
+
+  animation: fadeUp 1.6s ease forwards;
+}
+
+.scene-label {
+  margin-bottom: 14px;
+
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.scene h2 {
+  font-size: clamp(36px, 6vw, 82px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 0 42px rgba(173, 216, 230, 0.12);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    letter-spacing: -0.03em;
+  }
+
+  .back-button {
+    top: 18px;
+    left: 18px;
+  }
+}
